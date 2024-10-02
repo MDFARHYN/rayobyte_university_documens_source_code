@@ -1,0 +1,6 @@
+scrapy
+selenium
+playwright
+beautifulsoup4
+requests
+lxml

@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# VS Code files
+.vscode/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# macOS specific files
+.DS_Store
+
+# Logs
+*.log
