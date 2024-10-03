@@ -1,6 +1,6 @@
-# Scrapy Browser Automation - Part 1
+# Scrapy tutorial Rayobyte University
 
-This project demonstrates how to set up a Scrapy-based browser automation environment using a Python virtual environment.
+This project demonstrates how to use Scrapy for browser automation, advanced Scrapy features, and real-world Scrapy applications
 
 ## Setting Up the Project
 
