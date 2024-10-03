@@ -1,4 +1,20 @@
 #read the docs for more info https://github.com/scrapy-plugins/scrapy-playwright
+'''
+settings.py configration
+
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
+
+PLAYWRIGHT_BROWSER_TYPE = "firefox"
+
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": False,
+    "timeout": 20 * 1000,  # 20 seconds
+}
+
+'''
 import scrapy
 
 class BasicScriptingPlaywrightSpider(scrapy.Spider):

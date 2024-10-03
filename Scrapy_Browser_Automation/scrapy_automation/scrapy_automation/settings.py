@@ -19,6 +19,7 @@ NEWSPIDER_MODULE = "scrapy_automation.spiders"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+#scrapy_playwright_configrations
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
@@ -33,7 +34,7 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 
 
 
-# for selenium Chrome driver 
+#scrapy_selenium_configrations
 from shutil import which
   
 SELENIUM_DRIVER_NAME = 'chrome'
