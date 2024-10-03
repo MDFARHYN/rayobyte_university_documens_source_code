@@ -1,4 +1,4 @@
-# Scrapy settings for Basicscripting project
+# Scrapy settings for scrapy_automation project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,17 +7,45 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "Basicscripting"
+BOT_NAME = "scrapy_automation"
 
-SPIDER_MODULES = ["Basicscripting.spiders"]
-NEWSPIDER_MODULE = "Basicscripting.spiders"
+SPIDER_MODULES = ["scrapy_automation.spiders"]
+NEWSPIDER_MODULE = "scrapy_automation.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "Basicscripting (+http://www.yourdomain.com)"
+#USER_AGENT = "scrapy_automation (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
+
+PLAYWRIGHT_BROWSER_TYPE = "firefox"
+
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": False,
+    "timeout": 20 * 1000,  # 20 seconds
+}
+
+
+
+# for selenium Chrome driver 
+from shutil import which
+  
+SELENIUM_DRIVER_NAME = 'chrome'
+SELENIUM_DRIVER_EXECUTABLE_PATH = which('chromedriver')
+SELENIUM_DRIVER_ARGUMENTS=['--headless']  
+
+DOWNLOADER_MIDDLEWARES = {
+     'scrapy_selenium.SeleniumMiddleware': 800
+     }
+
+
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -45,13 +73,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "Basicscripting.middlewares.BasicscriptingSpiderMiddleware": 543,
+#    "scrapy_automation.middlewares.ScrapyAutomationSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "Basicscripting.middlewares.BasicscriptingDownloaderMiddleware": 543,
+#    "scrapy_automation.middlewares.ScrapyAutomationDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +91,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "Basicscripting.pipelines.BasicscriptingPipeline": 300,
+#    "scrapy_automation.pipelines.ScrapyAutomationPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

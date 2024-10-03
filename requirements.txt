@@ -1,6 +1,8 @@
 scrapy
 selenium
 playwright
+scrapy-selenium
+scrapy-playwright
 beautifulsoup4
 requests
 lxml
