@@ -6,8 +6,6 @@ This project demonstrates how to use Scrapy for browser automation, advanced Scr
 
 ```bash
 # 1. go to the Root Directory documens_source_code
-
-cd documens_source_code
  
 
 # 2. Create a Python Virtual Environment
@@ -29,7 +27,7 @@ pip install -r requirements.txt
 # 5. Project Structure
 # Here's how your directory structure should look:
 
-documents_source_code\
+root_folder\
 ├── requirements.txt
 ├── venv\  # Virtual environment folder
 ├── Scrapy_Browser_Automation\
