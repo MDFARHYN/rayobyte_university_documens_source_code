@@ -56,7 +56,7 @@ class ParallelSpider(scrapy.Spider):
                 'author': author
             }
 
-    def closed(self, reason):
+    def closed(self, response):
         # Record the end time
         end_time = datetime.datetime.now()
         total_time = end_time - self.start_time
