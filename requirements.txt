@@ -6,3 +6,5 @@ scrapy-playwright
 beautifulsoup4
 requests
 lxml
+fake-useragent
+python-decouple
