@@ -102,3 +102,34 @@ class ProxyPerformanceLoggerExtension:
         if proxy:
             self.failure_count[proxy] += 1
             self.logger.debug(f"Failed request with proxy: {proxy}")
+
+
+"""
+The extension listens for the spider’s open and close events, logging information and tracking the item count.
+
+"""
+
+class ItemCountExtension:
+    def __init__(self):
+        self.item_count = 0
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        ext = cls()
+        crawler.signals.connect(ext.spider_opened, signal=signals.spider_opened)
+        crawler.signals.connect(ext.spider_closed, signal=signals.spider_closed)
+        
+        # Store the extension instance in crawler.stats for easy access in the pipeline
+        crawler.stats.set_value("item_count_extension", ext)
+        
+        return ext
+
+    def spider_opened(self, spider):
+        spider.logger.info(f"Spider opened: {spider.name}")
+
+    def spider_closed(self, spider):
+        spider.logger.info(f"Spider closed: {spider.name}")
+        spider.logger.info(f"Total items scraped: {self.item_count}")
+
+    def increment_item_count(self):
+        self.item_count += 1

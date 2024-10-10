@@ -8,3 +8,4 @@ requests
 lxml
 fake-useragent
 python-decouple
+anticaptchaofficial

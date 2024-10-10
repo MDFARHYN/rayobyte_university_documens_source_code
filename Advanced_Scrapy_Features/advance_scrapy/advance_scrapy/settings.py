@@ -19,7 +19,20 @@ NEWSPIDER_MODULE = "advance_scrapy.spiders"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+#scrapy_playwright_configrations
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
 
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": False,
+    "args": ["--start-maximized"],  # This argument ensures that the browser starts maximized
+    "timeout": 30 * 1000,  # Extended timeout to 30 seconds for stability
+    # Optional: slow down actions to avoid errors on dynamic sites
+}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -66,6 +79,13 @@ MAX_RETRIES = 3
 EXTENSIONS = {
     'advance_scrapy.extensions.RequestResponseLoggingExtension': 500,  # Replace 'advance_scrapy' with your actual project name
     'advance_scrapy.extensions.ProxyPerformanceLoggerExtension': 500, 
+    'advance_scrapy.extensions.ItemCountExtension': 500,
+
+}
+
+
+ITEM_PIPELINES = {
+    'advance_scrapy.pipelines.ItemCounterPipeline': 300,  # Replace 'advance_scrapy' with your actual project name
 }
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
