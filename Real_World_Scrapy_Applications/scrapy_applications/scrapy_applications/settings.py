@@ -1,4 +1,4 @@
-# Scrapy settings for advance_scrapy project
+# Scrapy settings for scrapy_applications project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,19 +7,18 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+BOT_NAME = "scrapy_applications"
 
-BOT_NAME = "advance_scrapy"
-
-SPIDER_MODULES = ["advance_scrapy.spiders"]
-NEWSPIDER_MODULE = "advance_scrapy.spiders"
+SPIDER_MODULES = ["scrapy_applications.spiders"]
+NEWSPIDER_MODULE = "scrapy_applications.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "advance_scrapy (+http://www.yourdomain.com)"
+#USER_AGENT = "scrapy_applications (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
-#scrapy_playwright_configrations
+
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
@@ -29,10 +28,12 @@ PLAYWRIGHT_BROWSER_TYPE = "chromium"
 
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
-    "args": ["--start-maximized"],  # This argument ensures that the browser starts maximized
     "timeout": 30 * 1000,  # Extended timeout to 30 seconds for stability
-    # Optional: slow down actions to avoid errors on dynamic sites
+     
 }
+
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30000  # Set to 30 seconds
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -59,34 +60,20 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "advance_scrapy.middlewares.AdvanceScrapySpiderMiddleware": 543,
+#    "scrapy_applications.middlewares.ScrapyApplicationsSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    "advance_scrapy.middlewares.AdvanceScrapyDownloaderMiddleware": 543,
-    "advance_scrapy.middlewares.RandomUserAgentMiddleware": 543,  ## rotate user agent on every request
-    "advance_scrapy.middlewares.RotatingProxyMiddleware": 543,  #rotate proxy or change ip address on every request
-    "advance_scrapy.middlewares.RetryFailedRequestsMiddleware": 543,  #  will retry if get block    
-
+    "scrapy_applications.middlewares.ScrapyApplicationsDownloaderMiddleware": 543,
+    "scrapy_applications.middlewares.RotatingProxyMiddleware": 543,
+    "scrapy_applications.middlewares.RandomUserAgentMiddleware": 543,
+    "scrapy_applications.middlewares.RetryFailedRequestsMiddleware": 543,
+    "scrapy_applications.middlewares.SeleniumMiddleware": 543,
+    "scrapy_applications.middlewares.BanMonitoringMiddleware": 543,
 }
 
-# Set the maximum retries for failed requests
-MAX_RETRIES = 3
-
-
-EXTENSIONS = {
-    'advance_scrapy.extensions.RequestResponseLoggingExtension': 500,  # Replace 'advance_scrapy' with your actual project name
-    'advance_scrapy.extensions.ProxyPerformanceLoggerExtension': 500, 
-    'advance_scrapy.extensions.ItemCountExtension': 500,
-
-}
-
-
-ITEM_PIPELINES = {
-    'advance_scrapy.pipelines.ItemCounterPipeline': 300,  # Replace 'advance_scrapy' with your actual project name
-}
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -96,7 +83,7 @@ ITEM_PIPELINES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "advance_scrapy.pipelines.AdvanceScrapyPipeline": 300,
+#    "scrapy_applications.pipelines.ScrapyApplicationsPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -124,4 +111,3 @@ ITEM_PIPELINES = {
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
- 

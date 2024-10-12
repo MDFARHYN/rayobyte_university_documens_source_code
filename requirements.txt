@@ -9,3 +9,5 @@ lxml
 fake-useragent
 python-decouple
 anticaptchaofficial
+undetected-chromedriver
+selenium-stealth
